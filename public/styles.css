@@ -1,0 +1,34 @@
+#header {
+  width: 248px;
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#board { 
+  margin: 0 auto;
+  margin-top: 25px; 
+}
+
+#top-center, #center, #bottom-center {
+  border-left: 1px solid #1c1c1c;
+  border-right: 1px solid #1c1c1c;
+}
+
+#middle-left, #center, #middle-right {
+  border-top: 1px solid #1c1c1c;
+  border-bottom: 1px solid #1c1c1c;
+}
+
+#board tr td { 
+  width: 80px; 
+  height: 80px; 
+  font-family: Helvetica; 
+  font-size: 30px; 
+  text-align: center; 
+}
+ 
+#board tr td:hover { 
+  background: #95D1DE; 
+  cursor: pointer;
+}
