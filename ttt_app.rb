@@ -6,6 +6,9 @@ require_relative 'random_ai.rb'
 require_relative 'unbeatable_ai.rb'
 require 'sinatra/reloader' if development?
 
+# post routes come from the form action
+# params come from form names
+
 enable :sessions
 
 get '/' do
