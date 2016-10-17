@@ -65,12 +65,15 @@ post '/get_player_move' do
 		player_2 = session[:p2_name]
 		winner = session[:current_player_name]
 
-		CSV.open("summary.csv", "a+") do |csv|
-  			csv << "\n" + player_1 + ", " + player_2 + ", " + winner
-		end
+		write_to_csv(player_1, player_2, winner)
 
 		erb :win, :locals => { :current_player => session[:current_player], :p1 => session[:p1], :p2 => session[:p2], :current_player_name => session[:current_player_name], :board => session[:board].board_positions }
 	elsif session[:board].game_ends_in_tie? == true
+		player_1 = session[:name_player_1]
+		player_2 = session[:p2_name]
+		winner = "Tie"
+
+		write_to_csv(player_1, player_2, winner)
 		erb :tie, :locals => { :current_player => session[:current_player], :p1 => session[:p1], :p2 => session[:p2], :current_player_name => session[:current_player_name], :board => session[:board].board_positions }
 	else
 		if session[:current_player].marker == "X"
@@ -92,9 +95,8 @@ get '/tie' do
 end
 
 def write_to_csv(player_1, player_2, winner) 
-	CSV.open("summary.csv", "a+") do |csv|
-		puts csv
-  		csv << ["\n", "#{player_1}", "#{player_2}", "#{winner}"]
+	CSV.open("summary.csv", "a") do |csv|
+  		csv << [player_1, player_2, winner]
 	end
 end
 
