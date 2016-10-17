@@ -18,8 +18,13 @@
     </tr>
 </table>
 
-<p><%= "#{current_player_name} is #{current_player.marker}" %> it is your turn, please pick a valid spot.</p><br>
-<form method='post' action='get_player_move'>
-    <input type='number' name='move_spot'>
-    <input type='submit'>
+<form action='opponent' method='post'>
+    <p>Player two will be O</p>
+    <select name='player_2'>
+        <option value='human'>Human</option>
+        <option value='sequential_ai'>SequentialAI</option>
+        <option value='random_ai'>RandomAI</option>
+        <option value='unbeatable_ai'>UnbeatableAI</option>
+    </select><br><br>
+    <input type="submit" value="Submit">
 </form>
