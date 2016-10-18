@@ -98,7 +98,7 @@ end
 
 def write_to_csv(player_1, player_2, winner, date_time) 
 	CSV.open("summary.csv", "a") do |csv|
-  		csv << [player_1, player_2, winner, date_time]
+  		csv << ["#{player_1}" + ", " + "#{player_2}" + ", " + "#{winner}" + ", " + "#{date_time}"]
 	end
 end
 
