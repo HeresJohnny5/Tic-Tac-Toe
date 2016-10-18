@@ -5,6 +5,7 @@ require_relative "new_tic_tac.rb"
 require_relative "unbeatable_ai.rb"
 
 class ConsoleGame
+
 	attr_accessor :p1, :p2, :board, :current_player
 
 	def initialize(p1, p2)
@@ -65,4 +66,5 @@ class ConsoleGame
 			puts "The game is a tie."
 		end
 	end
+	
 end

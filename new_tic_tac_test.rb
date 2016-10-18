@@ -7,7 +7,6 @@ class TestBoard <Minitest::Test
 		assert_equal([" ", " ", " ", " ", " ", " ", " ", " ", " "], board.ttt_board)
 	end
 
-	#updating board
 	def test_new_board_with_x_at_index_position_0
 		board = Board.new()
 		board.update_board(0, "X")

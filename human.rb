@@ -1,4 +1,5 @@
 class Human
+
 	attr_accessor :marker
 
 	def initialize(marker)
@@ -15,4 +16,5 @@ class Human
 			get_move(board)
 		end
 	end
+	
 end

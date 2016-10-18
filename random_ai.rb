@@ -1,4 +1,5 @@
 class RandomAI
+
 	attr_accessor :marker
 
 	def initialize(marker)
@@ -21,4 +22,5 @@ class RandomAI
 	def array
 		array = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 	end
+	
 end

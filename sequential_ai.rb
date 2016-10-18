@@ -1,4 +1,5 @@
 class SequentialAI
+
 	attr_accessor :marker
 
 	def initialize(marker)
@@ -8,4 +9,5 @@ class SequentialAI
 	def get_move(board)
 		board.index(" ")
 	end
+	
 end

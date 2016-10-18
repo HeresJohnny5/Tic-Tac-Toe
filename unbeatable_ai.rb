@@ -18,9 +18,6 @@ class UnbeatableAI
 			move = check_for_win(ttt_board, your_marker)
 		elsif check_for_block(ttt_board, opponent_marker) <= 8
 			move = check_for_block(ttt_board, opponent_marker)
-
-		# elsif check_for_fork != []
-		# 	move = check_for_fork
 		else
 			move = ttt_board.index(" ")
 		end
@@ -41,9 +38,6 @@ class UnbeatableAI
 
 		win_or_block_positions = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
 
-		# winner_or_block = []
-		# i = 0
-		# i2 = 0
 		pick = 10
 		
 		winning_or_block_combinations.each_with_index do |win_or_block_line, index|
@@ -54,9 +48,6 @@ class UnbeatableAI
 			end
 		end
 		pick
-
-		# i2 = winner_or_block.index(" ")
-		# win_or_block_positions[i][i2]
 	end
 
 	def check_for_win(ttt_board, your_marker)
@@ -85,7 +76,6 @@ class UnbeatableAI
 		fork_spot = []
 		i = []
 		i2 = 0
-		# result = 10
 		
 		fork_combinations.each_with_index do |forking_line, index|
 			if forking_line.count(marker) == 1 && forking_line.count(" ") == 2
