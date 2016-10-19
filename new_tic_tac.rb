@@ -3,7 +3,7 @@ class Board
 	attr_accessor :ttt_board
 	
 	def initialize()
-		@ttt_board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+		@ttt_board = [" "," "," "," "," "," "," "," "," "]
 	end
 
 	def board_positions()
@@ -23,7 +23,9 @@ class Board
 	end
 
 	def valid_space?(position)
-	ttt_board[position] == " " && position >= 0 && position <= 8
+		# ttt_board[position] == " " && position >= 0 && position <= 8
+		position = (position - 1)
+		position >= 0 && position <= 8 && ttt_board[position] == " "
 	end
 
 	def game_ends_in_tie?

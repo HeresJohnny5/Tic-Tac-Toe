@@ -39,31 +39,56 @@ post '/opponent' do
 		session[:p2] = SequentialAI.new("O")
 
 		erb :get_move, :locals => { :board => session[:board].board_positions }
+		# redirect '/get_move'
 
 	elsif player_2 == "random_ai"
 		session[:p2] = RandomAI.new("O")
 
-		erb :get_move, :locals => { :board => session[:board].board_positions }
+		session[:name_player_2] = "CPU"
+
+		# erb :get_move, :locals => { :current_player => session[:current_player], :current_player_name => session[:current_player_name], :board => session[:board].board_positions }
+
+		redirect '/get_move'
 
 	else player_2 == "unbeatable_ai"
 		session[:p2] = UnbeatableAI.new("O")
 
 		erb :get_move, :locals => { :board => session[:board].board_positions }
+		# redirect '/get_move'
 	end
 end
 
 post '/opponent_name' do
 	session[:name_player_2] = params[:player_2]
 
-	erb :get_move, :locals => { :current_player => session[:current_player], :current_player_name => session[:current_player_name], :board => session[:board].board_positions }
+	# erb :get_move, :locals => { :current_player => session[:current_player], :current_player_name => session[:current_player_name], :board => session[:board].board_positions }
+		redirect '/get_move'
 end
 
 get '/get_move' do
-	erb :get_move
+	move = session[:current_player].get_move(session[:board].ttt_board)
+
+	if move == "NO"
+		erb :get_move, :locals => { :current_player => session[:current_player], :current_player_name => session[:current_player_name], :board => session[:board].board_positions }
+	elsif session[:board].valid_space?(move)
+		redirect '/make_move?move=' + move.to_s 
+	else
+		redirect '/get_move'
+	end
 end
 
 post '/get_player_move' do
-	move_spot = params[:move_spot].to_i
+	move = params[:move_spot].to_i
+
+	if session[:board].valid_space?(move)
+		redirect '/make_move?move=' + move.to_s
+	else
+		redirect '/get_move'
+	end
+end
+
+get '/make_move' do
+	move_spot = params[:move].to_i
 
 	session[:board].update_board((move_spot - 1), session[:current_player].marker)
 
@@ -94,7 +119,9 @@ post '/get_player_move' do
 			session[:current_player_name] = session[:name_player_1]
 		end
 
-		erb :get_move, :locals => { :current_player => session[:current_player], :current_player_name => session[:current_player_name], :board => session[:board].board_positions }
+		# erb :get_move, :locals => { :current_player => session[:current_player], :current_player_name => session[:current_player_name], :board => session[:board].board_positions }
+
+		redirect '/get_move'
 	end	
 end
 
@@ -113,3 +140,6 @@ end
 def check_file_length()
 	File.readlines("summary.csv").size
 end
+
+# You can do a redirect if you're not using erb 
+# 

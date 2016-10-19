@@ -7,16 +7,17 @@ class RandomAI
 	end
 	
 	def get_move(board)
-			move = []
-			i = 0
-			board.each do  |board_spot|
+		n = rand(1..9)
 
-				if board_spot == " "
-					move.push(i)
-				end
-				i = i + 1
-			end
-			move.sample
+		if valid_space?(board, n) == false
+			get_move(board)
+		else
+			n
+		end
+	end
+
+	def valid_space?(board, choice)
+		board[choice] != "X" || board[choice] != "O"
 	end
 
 	def array
@@ -24,3 +25,16 @@ class RandomAI
 	end
 	
 end
+
+# def get_move(board)
+# 	move = []
+# 	i = 0
+# 		board.each do  |board_spot|
+
+# 		if board_spot == " "
+# 			move.push(i)
+# 		end
+# 		i = i + 1
+# 		end
+# 	move.sample
+# end
