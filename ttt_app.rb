@@ -5,7 +5,18 @@ require_relative 'human.rb'
 require_relative 'sequential_ai.rb'
 require_relative 'random_ai.rb'
 require_relative 'unbeatable_ai.rb'
+require 'aws/s3' 
 require 'sinatra/reloader' if development?
+load './local_env.rb' if file.exists?("./local_env.rb")
+
+s3_access_key = ENV['S3_Access_Key']
+s3_secret_key = ENV['S3_Secret_Key']
+
+AWS::S3::Base.establish_connection!(
+:s3_access_key => access_id,
+:s3_secret_key => secret
+
+)
 
 # post routes come from the form action
 # params come from form names
