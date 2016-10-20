@@ -4,7 +4,6 @@ body {
 
 .header-container {
   background-color: #2b3340;
-  margin-bottom: 5%;
 }
 
 #header {
@@ -12,6 +11,28 @@ body {
   margin: 0 auto;
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+#footer {
+  text-align: center;
+  margin: 0;
+  padding-top: 30px;
+  padding-bottom: 25px;
+}
+
+#footer > a {
+  position: relative;
+  color: black;
+  text-decoration: none;
+}
+
+#footer > a:hover {
+  color: black;
+  text-decoration: underline;
+}
+
+#header > a:hover {
+  color: #2b3340;
 }
 
 #header > a {
@@ -47,7 +68,8 @@ body {
 
 #board { 
   margin: 0 auto;
-  margin-top: 25px; 
+  margin-top: 8%;
+  margin-bottom: 5%; 
 }
 
 #top-center, #center, #bottom-center {
@@ -61,13 +83,53 @@ body {
 }
 
 #board tr td { 
-  width: 80px; 
-  height: 80px; 
+  width: 100px; 
+  height: 100px; 
   font-family: Helvetica; 
   font-size: 30px; 
   text-align: center; 
 }
- 
-#board tr td:hover {  
-  cursor: pointer;
+
+.form-container {
+  text-align: center;
+  margin-bottom: 5%;
 }
+
+p {
+  text-align: center;
+  color: #2b3340;
+}
+
+#header {
+  text-align: center;
+}
+
+#header-player {
+  text-align: center;
+  padding: 0;
+  margin-top: 0;
+}
+
+form {
+  text-align: center;
+}
+
+.player-one {
+  color: #ff745c;
+}
+
+.player-two {
+  color: #38aac5;
+}
+
+hr.style-one {
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #2b3340, #ccc);
+    margin: 2% 10% 2% 10%;
+}
+ 
+/*#board tr td:hover {  
+  cursor: pointer;
+}*/
