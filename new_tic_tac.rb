@@ -3,7 +3,7 @@ class Board
 	attr_accessor :ttt_board
 	
 	def initialize()
-		@ttt_board = [" "," "," "," "," "," "," "," "," "]
+		@ttt_board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 	end
 
 	def board_positions()

@@ -61,32 +61,27 @@ post '/opponent' do
 
 	elsif player_2 == "sequential_ai"
 		session[:p2] = SequentialAI.new("O")
-
-		erb :get_move, :locals => { :board => session[:board].board_positions }
-		# redirect '/get_move'
-
-	elsif player_2 == "random_ai"
-		session[:p2] = RandomAI.new("O")
-
 		session[:name_player_2] = "CPU"
-
-		# erb :get_move, :locals => { :current_player => session[:current_player], :current_player_name => session[:current_player_name], :board => session[:board].board_positions }
 
 		redirect '/get_move'
 
-	else player_2 == "unbeatable_ai"
-		session[:p2] = UnbeatableAI.new("O")
+	elsif player_2 == "random_ai"
+		session[:p2] = RandomAI.new("O")
+		session[:name_player_2] = "CPU"
 
-		erb :get_move, :locals => { :board => session[:board].board_positions }
-		# redirect '/get_move'
+		redirect '/get_move'
+
+	# else player_2 == "unbeatable_ai"
+	# 	session[:p2] = UnbeatableAI.new("O")
+
+	# 	redirect '/get_move'
 	end
 end
 
 post '/opponent_name' do
 	session[:name_player_2] = params[:player_2]
 
-	# erb :get_move, :locals => { :current_player => session[:current_player], :current_player_name => session[:current_player_name], :board => session[:board].board_positions }
-		redirect '/get_move'
+	redirect '/get_move'
 end
 
 get '/get_move' do
@@ -143,8 +138,6 @@ get '/make_move' do
 			session[:current_player_name] = session[:name_player_1]
 		end
 
-		# erb :get_move, :locals => { :current_player => session[:current_player], :current_player_name => session[:current_player_name], :board => session[:board].board_positions }
-
 		redirect '/get_move'
 	end	
 end
@@ -169,6 +162,3 @@ end
 def check_file_length()
 	File.readlines("summary.csv").size
 end
-
-# You can do a redirect if you're not using erb 
-# 
