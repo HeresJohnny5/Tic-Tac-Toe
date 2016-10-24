@@ -7,32 +7,22 @@ require_relative 'random_ai.rb'
 require_relative 'unbeatable_ai.rb'
 require 'aws/s3' 
 require 'sinatra/reloader' if development?
-load './local_env.rb' if File.exists?("./local_env.rb")
-
-s3_key = ENV['S3_Key']
-s3_secret = ENV['S3_Secret']
-
-AWS::S3::Base.establish_connection!(
-:access_key_id => s3_key,
-:secret_access_key => s3_secret
-)
+# load './local_env.rb' if File.exists?("./local_env.rb")
 
 def write_file_to_s3(data_to_write)
-	AWS::S3::S3Object.store('summary.csv', 
-    	data_to_write, 
-        'tictactoe-scores5', 
-        :access => :public_read)
-end
-
-def read_csv_from_s3
-	file = 'summary.csv'
+	AWS::S3::Base.establish_connection!(
+  :access_key_id => 'AKIAIP2WO3P4LTNQ42UQ',
+  :secret_access_key => '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'   
+)
+	file = 'summary.csv' 
 	bucket = 'tictactoe-scores5'
-	object_from_s3 = AWS::S3::S3Object.value(file, bucket)
-	csv = CSV.parse(object_from_s3)
+	csv = AWS::S3::S3Object.value(file, bucket)
+	csv << "Something"
+	AWS::S3::S3Object.store(File.basename(file), 
+        csv, 
+        bucket, 
+        :access => :public_read)	
 end
-
-# post routes come from the form action
-# params come from form names
 
 enable :sessions
 
@@ -118,6 +108,9 @@ get '/make_move' do
 		date_time = DateTime.now
 
 		write_to_csv(player_1, player_2, winner, date_time)
+
+		# Added line 134
+		write_file_to_s3(player_1)
 
 		erb :win, :locals => { :current_player => session[:current_player], :current_player_name => session[:current_player_name], :board => session[:board].board_positions }
 	elsif session[:board].game_ends_in_tie? == true
