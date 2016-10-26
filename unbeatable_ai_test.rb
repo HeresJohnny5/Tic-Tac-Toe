@@ -1,23 +1,6 @@
 require "minitest/autorun"
 require_relative "unbeatable_ai.rb"
 
-class TestUnbeatableAI < Minitest::Test
-	def test_create_player_returns_players_marker
-		player = UnbeatableAI.new("X")
-		assert_equal("X", player.marker)
-	end
-
-	def test_first_available_space_returned_one
-        player = UnbeatableAI.new("X")
-        assert_equal(1, player.get_move(["X", " ", " ", " ", " ", " ", " ", " ", " "]))
-	end
-
-	def test_first_available_space_returned_three
-        player = UnbeatableAI.new("X")
-        assert_equal(3, player.get_move(["X", "O", "X", " ", " ", "O", " ", "X", " "]))
-	end
-end
-
 class TestWinOrBlock < Minitest::Test
 	def test_X_takes_winning_space_two
 		player = UnbeatableAI.new("X")
@@ -67,11 +50,11 @@ class TestForFork < Minitest::Test
 	end
 end
 
-# class TestBlockFork < Minitest::Test
-# 	def method_name
+class TestBlockFork < Minitest::Test
+	def method_name
 		
-# 	end
-# end
+	end
+end
 
 # class TestCenterMove < Minitest::Test
 # 	def test_O_takes_center_returns_four
@@ -79,3 +62,20 @@ end
 # 		assert_equal(4, player.check_for_fork(["X", " ", " ", " ", " ", " ", " ", " ", " "]))	
 # 	end	
 # end
+
+class TestUnbeatableAI < Minitest::Test
+	def test_create_player_returns_players_marker
+		player = UnbeatableAI.new("X")
+		assert_equal("X", player.marker)
+	end
+
+	# def test_first_available_space_returned_one
+ #        player = UnbeatableAI.new("X")
+ #        assert_equal(1, player.get_move(["X", " ", " ", " ", " ", " ", " ", " ", " "]))
+	# end
+
+	# def test_first_available_space_returned_three
+ #        player = UnbeatableAI.new("X")
+ #        assert_equal(3, player.get_move(["X", "O", "X", " ", " ", "O", " ", "X", " "]))
+	# end
+end

@@ -12,7 +12,6 @@
 # Opposite corner: If the opponent is in the corner, the player plays the opposite corner.
 
 # Empty corner: The player plays in a corner square.
-
 # Empty side: The player plays in a middle square on any of the 4 sides.
 
 class UnbeatableAI
@@ -35,6 +34,8 @@ class UnbeatableAI
 			move = check_for_win(ttt_board, your_marker)
 		elsif check_for_block(ttt_board, opponent_marker) <= 8
 			move = check_for_block(ttt_board, opponent_marker)
+		elsif check_for_fork(ttt_board) <= 8
+			move = check_for_fork(ttt_board)
 		else
 			move = ttt_board.index(" ")
 		end
@@ -92,7 +93,6 @@ class UnbeatableAI
 		fork_line = []
 		fork_spot = []
 		i = []
-		i2 = 0
 		
 		fork_combinations.each_with_index do |forking_line, index|
 			if forking_line.count(marker) == 1 && forking_line.count(" ") == 2
@@ -107,6 +107,6 @@ class UnbeatableAI
 
 		fork_spot = fork_spot.flatten
 
-		fork_spot.detect { |match| fork_spot.count(match) > 1}
+		fork_spot.detect { |match| fork_spot.count(match) > 1 }
 	end
 end
