@@ -1,0 +1,19 @@
+<div class="results-container">
+	<table>
+		<tr>
+			<th>Player 1</th>
+			<th>Player 2</th>
+			<th>Winner</th>
+			<th>Date - Time</th>
+		</tr><br>
+
+		<% names.each do |row| %>
+		<tr>
+			<td><%= row[0] %></td>
+			<td><%= row[1] %></td>
+			<td><%= row[2] %></td>
+			<td><%= row[3] %></td><br>
+		</tr>
+		<% end %>
+	</table>
+</div>

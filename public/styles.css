@@ -123,11 +123,16 @@ form {
 }
 
 hr.style-one {
-    border: 0;
-    height: 1px;
-    background: #333;
-    background-image: linear-gradient(to right, #ccc, #2b3340, #ccc);
-    margin: 2% 10% 2% 10%;
+  border: 0;
+  height: 1px;
+  background: #333;
+  background-image: linear-gradient(to right, #ccc, #2b3340, #ccc);
+  margin: 2% 10% 2% 10%;
+}
+
+.results-container {
+  width: 50%;
+  margin: 0 auto;
 }
  
 /*#board tr td:hover {  

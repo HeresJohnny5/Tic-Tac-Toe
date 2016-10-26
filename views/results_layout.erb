@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang='en'>
+    <head>
+        <title><%= @title %></title>
+        <meta charset='utf-8'>
+        <link rel='stylesheet' href='styles.css'>
+    </head>
+    <body>
+    	<div class='header-container'>
+            <h1 id='header'><a href='/''>Tic Tac Toe Game</a></h1>
+        </div>
+
+		<%= yield %>
+        <hr class="style-one">
+        <footer class='footer-container'>
+            <h3 id='footer'><a href='https://en.wikipedia.org/wiki/Tic-tac-toe' target='blank'>Rules of Tic Tac Toe</a></h3>
+        </footer>
+        <hr class='style-one'>
+        <p id='copywright'>&#169;John Erickson 2016</p>
+    </body>
+</html>

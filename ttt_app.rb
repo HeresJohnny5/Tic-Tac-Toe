@@ -26,10 +26,17 @@ end
 
 # Added method 28
 def read_csv_from_s3
-	file = ENV['S3_File']
-	bucket = ENV['S3_BUCKET']
+	file = 'summary.csv'
+	bucket = 'tictactoe-scores1'
 	object_from_s3 = AWS::S3::S3Object.value(file, bucket)
-	csv = CSV.parse(object_from_s3)
+end
+
+def create_result_array(content)
+	file = content
+	result = file.split("\n")
+	array = Array.new
+	result.each { |x| array.push(x.split(","))}
+	array
 end
 
 enable :sessions
@@ -90,6 +97,7 @@ get '/get_move' do
 	elsif session[:board].valid_space?(move)
 		redirect '/make_move?move=' + move.to_s 
 	else
+		# Does line 101 ever happen?
 		redirect '/get_move'
 	end
 end
@@ -115,7 +123,7 @@ get '/make_move' do
 		winner = session[:current_player_name]
 		date_time = DateTime.now
 
-		write_to_csv(player_1, player_2, winner, date_time)
+		# write_to_csv(player_1, player_2, winner, date_time)
 
 		# Added line 134
 		write_file_to_s3(player_1, player_2, winner, date_time)
@@ -127,7 +135,7 @@ get '/make_move' do
 		winner = "Tie"
 		date_time = DateTime.now
 
-		write_to_csv(player_1, player_2, winner, date_time)
+		# write_to_csv(player_1, player_2, winner, date_time)
 
 		erb :tie, :locals => { :board => session[:board].board_positions }
 	else
@@ -146,6 +154,13 @@ end
 get '/upload' do
   	winning_results = 'summary.csv'
   	write_file_to_s3(winning_results)
+end
+
+get '/update_csv' do
+	names = create_result_array(read_csv_from_s3)
+	names.shift
+	
+	erb :update_csv, :layout => :results_layout, :locals => { :names => names, :board => session[:board].board_positions }
 end
 
 get '/win' do 
