@@ -15,6 +15,7 @@
 # Empty side: The player plays in a middle square on any of the 4 sides.
 
 class UnbeatableAI
+
 	attr_accessor :marker
 
 	def initialize(marker)
@@ -42,6 +43,14 @@ class UnbeatableAI
 		move
 	end
 
+	def check_for_win(ttt_board, your_marker)
+		win_or_block(ttt_board, your_marker)
+	end
+
+	def check_for_block(ttt_board, opponent_marker)
+		win_or_block(ttt_board, opponent_marker)
+	end
+
 	def win_or_block(ttt_board, current_marker)
 		winning_or_block_combinations = [
 							[ttt_board[0],ttt_board[1],ttt_board[2]],
@@ -66,14 +75,6 @@ class UnbeatableAI
 			end
 		end
 		pick
-	end
-
-	def check_for_win(ttt_board, your_marker)
-		win_or_block(ttt_board, your_marker)
-	end
-
-	def check_for_block(ttt_board, opponent_marker)
-		win_or_block(ttt_board, opponent_marker)
 	end
 
 	def check_for_fork(ttt_board)
@@ -109,4 +110,52 @@ class UnbeatableAI
 
 		fork_spot.detect { |match| fork_spot.count(match) > 1 }
 	end
+
+	def block_opponents_fork(ttt_board)
+		block_fork_combinations = [
+								[ttt_board[0],ttt_board[1],ttt_board[2]],
+								[ttt_board[3],ttt_board[4],ttt_board[5]],
+								[ttt_board[6], ttt_board[7], ttt_board[8]],
+								[ttt_board[0], ttt_board[3], ttt_board[6]],
+								[ttt_board[1],ttt_board[4], ttt_board[7]],
+								[ttt_board[2],ttt_board[5],ttt_board[8]], 
+								[ttt_board[0], ttt_board[4], ttt_board[8]],
+								[ttt_board[2],ttt_board[4],ttt_board[6]]
+								]
+
+		block_fork_positions = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+
+		if marker == "X"
+			p2_marker = "O"
+		else
+			p2_marker = "X"
+		end
+
+		block_fork_line = []
+		block_fork_spot = []
+		i = []
+		
+		block_fork_combinations.each_with_index do |block_forking_line, index|
+			if block_forking_line.count(marker) == 1 && block_forking_line.count(" ") == 2
+				block_fork_line = block_forking_line
+				i.push(index)
+			end
+		end
+
+		i.each do |index|
+			block_fork_spot.push(block_fork_positions[index])
+		end
+
+		block_fork_spot = block_fork_spot.flatten
+
+		block_spot = []
+		block_fork_spot.each do |spot|
+			if ttt_board[spot] == " "
+				block_spot.push(spot)
+			end
+		end
+
+		block_spot_first = block_spot.shift
+	end
+
 end
