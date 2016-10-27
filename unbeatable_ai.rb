@@ -23,18 +23,18 @@ class UnbeatableAI
 	end
 
 	def get_move(ttt_board)
-		your_marker = marker
+		cpu_marker = marker
 		
-		if your_marker == "X"
-			opponent_marker = "O"
+		if cpu_marker == "O"
+			player_marker = "X"
 		else
-			opponent_marker = "X"
+			player_marker = "O"
 		end
 
-		if check_for_win(ttt_board, your_marker) <= 8
-			move = check_for_win(ttt_board, your_marker)
-		elsif check_for_block(ttt_board, opponent_marker) <= 8
-			move = check_for_block(ttt_board, opponent_marker)
+		if check_for_win(ttt_board, cpu_marker) <= 8
+			move = check_for_win(ttt_board, cpu_marker)
+		elsif check_for_block(ttt_board, player_marker) <= 8
+			move = check_for_block(ttt_board, player_marker)
 		elsif check_for_fork(ttt_board) <= 8
 			move = check_for_fork(ttt_board)
 		else
@@ -47,8 +47,8 @@ class UnbeatableAI
 		win_or_block(ttt_board, your_marker)
 	end
 
-	def check_for_block(ttt_board, opponent_marker)
-		win_or_block(ttt_board, opponent_marker)
+	def check_for_block(ttt_board, player_marker)
+		win_or_block(ttt_board, player_marker)
 	end
 
 	def win_or_block(ttt_board, current_marker)
@@ -125,10 +125,12 @@ class UnbeatableAI
 
 		block_fork_positions = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
 
-		if marker == "X"
-			p2_marker = "O"
+		cpu_marker = marker
+
+		if cpu_marker == "O"
+			player_marker = "X"
 		else
-			p2_marker = "X"
+			player_marker = "O"
 		end
 
 		block_fork_line = []
@@ -136,7 +138,7 @@ class UnbeatableAI
 		i = []
 		
 		block_fork_combinations.each_with_index do |block_forking_line, index|
-			if block_forking_line.count(marker) == 1 && block_forking_line.count(" ") == 2
+			if block_forking_line.count(player_marker) == 1 && block_forking_line.count(" ") == 2
 				block_fork_line = block_forking_line
 				i.push(index)
 			end
@@ -156,6 +158,48 @@ class UnbeatableAI
 		end
 
 		block_spot_first = block_spot.shift
+	end
+
+	def check_for_center(ttt_board)
+		if ttt_board[4] = " "
+			move = 4
+		end
+	end
+
+	def opponent_corner(ttt_board)
+		cpu_marker = marker
+		
+		if cpu_marker == "O"
+			player_marker = "X"
+		else
+			player_marker = "O"
+		end
+
+		if ttt_board[0] == player_marker
+			move = 8
+		elsif ttt_board[2] == player_marker
+			move = 6
+		elsif ttt_board[6] == player_marker
+			move = 2
+		elsif ttt_board[8] == player_marker
+			move = 0
+		else
+			move
+		end
+	end
+
+	def check_empty_corner(ttt_board)
+
+		corners = [0,2,6,8]
+		answer = []
+
+		corners.each do |corner|
+			if corner == " "
+				answer.push(corner)
+			end
+		end
+		answer = answer.shift
+		answer = answer + 1
 	end
 
 end
