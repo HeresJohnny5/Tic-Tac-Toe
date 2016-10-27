@@ -1,6 +1,6 @@
 <p><%= current_player_name %> is <%= current_player.marker %></p>
 <p><%= current_player_name %> it is your turn, please pick a valid spot.</p><br>
 <form action="get_player_move" method="post">
-    <input type="number" name="move_spot" placeholder="Pick a space">
+    <input type="number" name="move_spot" autofocus="autofocus" placeholder="Pick a space">
     <input type="submit">
 </form>

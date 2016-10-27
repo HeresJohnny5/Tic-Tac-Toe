@@ -68,8 +68,8 @@ body {
 
 #board { 
   margin: 0 auto;
-  margin-top: 8%;
-  margin-bottom: 5%; 
+  margin-top: 4%;
+  margin-bottom: 3%;
 }
 
 #top-center, #center, #bottom-center {
@@ -133,7 +133,26 @@ hr.style-one {
 .results-container {
   width: 50%;
   margin: 0 auto;
+  margin-top: -22rem;
 }
+
+.board-data {
+  background: white;
+  font-size: -webkit-xxx-large;
+  border: none;
+}
+
+input[value="X"] {
+  color: #ff745c;
+}
+
+input[value="O"] {
+  color: #38aac5;
+}
+
+/*.results-header, .results-data tr {
+  text-align: center;
+}*/
  
 /*#board tr td:hover {  
   cursor: pointer;

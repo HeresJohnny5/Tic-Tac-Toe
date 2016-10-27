@@ -37,6 +37,10 @@ class UnbeatableAI
 			move = check_for_block(ttt_board, player_marker)
 		elsif check_for_fork(ttt_board) <= 8
 			move = check_for_fork(ttt_board)
+		elsif block_opponents_fork(ttt_board, cpu_marker) <= 8
+			move = block_opponents_fork(ttt_board, cpu_marker)
+		elsif check_for_center(ttt_board) <= 8
+			move = check_for_center(ttt_board)
 		else
 			move = ttt_board.index(" ")
 		end
@@ -108,10 +112,22 @@ class UnbeatableAI
 
 		fork_spot = fork_spot.flatten
 
-		fork_spot.detect { |match| fork_spot.count(match) > 1 }
+		array = []
+		fork_spot.each do |spot|
+			if ttt_board[spot] == " "
+				array.push(spot)
+			end
+		end
+
+		if array.detect { |match| array.count(match) > 1 } == nil
+			move = 10
+		else
+			move = array.detect { |match| array.count(match) > 1 }
+		end
+		move
 	end
 
-	def block_opponents_fork(ttt_board)
+	def block_opponents_fork(ttt_board, cpu_marker)
 		block_fork_combinations = [
 								[ttt_board[0],ttt_board[1],ttt_board[2]],
 								[ttt_board[3],ttt_board[4],ttt_board[5]],
@@ -213,3 +229,64 @@ class UnbeatableAI
 	end
 
 end
+
+# def block_opponents_fork(ttt_board, cpu_marker)
+# 		block_fork_combinations = [
+# 								[ttt_board[0],ttt_board[1],ttt_board[2]],
+# 								[ttt_board[3],ttt_board[4],ttt_board[5]],
+# 								[ttt_board[6], ttt_board[7], ttt_board[8]],
+# 								[ttt_board[0], ttt_board[3], ttt_board[6]],
+# 								[ttt_board[1],ttt_board[4], ttt_board[7]],
+# 								[ttt_board[2],ttt_board[5],ttt_board[8]], 
+# 								[ttt_board[0], ttt_board[4], ttt_board[8]],
+# 								[ttt_board[2],ttt_board[4],ttt_board[6]]
+# 								]
+
+# 		block_fork_positions = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+
+# 		cpu_marker = marker
+
+# 		if cpu_marker == "O"
+# 			player_marker = "X"
+# 		else
+# 			player_marker = "O"
+# 		end
+
+# 		block_fork_line = []
+# 		block_fork_spot = []
+# 		i = []
+
+# 		array = []
+# 		ttt_board.each do |spot|
+# 			if spot == cpu_marker
+# 				array.push(cpu_marker)
+# 			end
+# 		end
+		
+# 		if array.count >= 2		
+# 			block_fork_combinations.each_with_index do |block_forking_line, index|
+# 				if block_forking_line.count(player_marker) == 1 && block_forking_line.count(" ") == 2
+# 						block_fork_line = block_forking_line
+# 						i.push(index)
+# 				end
+# 			end
+
+# 			i.each do |index|
+# 				block_fork_spot.push(block_fork_positions[index])
+# 			end
+
+# 			block_fork_spot = block_fork_spot.flatten
+
+# 			block_spot = []
+# 			block_fork_spot.each do |spot|
+# 				if ttt_board[spot] == " "
+# 					block_spot.push(spot)
+# 				end
+# 			end
+
+# 			block_spot_first = block_spot.shift
+# 			move = block_fork_spot
+# 		else
+# 			move = 10
+# 		end
+# 	end

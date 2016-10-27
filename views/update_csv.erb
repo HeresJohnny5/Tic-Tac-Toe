@@ -1,6 +1,6 @@
-<div class="results-container">
-	<table>
-		<tr>
+<div>
+	<table class="results-container">
+		<tr class="results-header">
 			<th>Player 1</th>
 			<th>Player 2</th>
 			<th>Winner</th>
@@ -8,7 +8,7 @@
 		</tr><br>
 
 		<% names.each do |row| %>
-		<tr>
+		<tr class="results-data">
 			<td><%= row[0] %></td>
 			<td><%= row[1] %></td>
 			<td><%= row[2] %></td>
