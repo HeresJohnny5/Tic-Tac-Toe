@@ -133,7 +133,8 @@ hr.style-one {
 .results-container {
   width: 50%;
   margin: 0 auto;
-  margin-top: -22rem;
+  text-align: center;
+  margin-top: 1%;
 }
 
 .board-data {
@@ -150,9 +151,10 @@ input[value="O"] {
   color: #38aac5;
 }
 
-/*.results-header, .results-data tr {
-  text-align: center;
-}*/
+.results-header {
+  text-decoration: underline;
+  font-size: large;
+}
  
 /*#board tr td:hover {  
   cursor: pointer;
