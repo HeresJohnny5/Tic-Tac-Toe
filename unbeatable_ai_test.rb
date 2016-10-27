@@ -87,9 +87,24 @@ class TestOpponentCorner < Minitest::Test
 end
 
 class TestEmptyCorner < Minitest::Test
-	def test
+	def test_empty_corner_returns_0
 		cpu = UnbeatableAI.new("O")
-		assert_equal(, cpu.check_empty_corner())
+		assert_equal(0, cpu.check_empty_corner([" ", " ", " ", "X", " ", " ", " ", " ", " "]))
+	end
+
+	def test_empty_corner_returns_2
+		cpu = UnbeatableAI.new("O")
+		assert_equal(2, cpu.check_empty_corner(["X", " ", " ", " ", "O", " ", " ", "X", " "]))
+	end
+
+	def test_empty_corner_returns_6
+		cpu = UnbeatableAI.new("O")
+		assert_equal(6, cpu.check_empty_corner(["X", "O", "X", " ", "O", " ", " ", "X", " "]))
+	end
+
+	def test_empty_corner_returns_8
+		cpu = UnbeatableAI.new("O")
+		assert_equal(8, cpu.check_empty_corner(["X", "O", "X", "X", "O", " ", "O", "X", " "]))
 	end
 end
 

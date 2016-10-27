@@ -189,17 +189,15 @@ class UnbeatableAI
 	end
 
 	def check_empty_corner(ttt_board)
-
-		corners = [0,2,6,8]
-		answer = []
+		corners = [0, 2, 6, 8]
+		corner_options = []
 
 		corners.each do |corner|
-			if corner == " "
-				answer.push(corner)
+			if ttt_board[corner] == " "
+				corner_options.push(corner)
 			end
 		end
-		answer = answer.shift
-		answer = answer + 1
+		first_corner_available = corner_options.shift
 	end
 
 end
