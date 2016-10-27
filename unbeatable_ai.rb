@@ -200,4 +200,16 @@ class UnbeatableAI
 		first_corner_available = corner_options.shift
 	end
 
+	def check_empty_side(ttt_board)
+		sides = [1, 3, 5, 7]
+		side_options = []
+
+		sides.each do |side|
+			if ttt_board[side] == " "
+				side_options.push(side)
+			end
+		end
+		first_side_available = side_options.shift
+	end
+
 end

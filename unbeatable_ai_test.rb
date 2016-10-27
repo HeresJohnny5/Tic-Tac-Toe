@@ -108,19 +108,16 @@ class TestEmptyCorner < Minitest::Test
 	end
 end
 
+class TestEmptyEdge < Minitest::Test
+	def test_empty_edge_returns_1
+		cpu = UnbeatableAI.new("O")
+		assert_equal(1, cpu.check_empty_side(["O", " ", " ", " ", "X", " ", " ", " ", "X"]))
+	end
+end
+
 class TestUnbeatableAI < Minitest::Test
 	def test_create_player_returns_players_marker
 		cpu = UnbeatableAI.new("O")
 		assert_equal("O", cpu.marker)
 	end
-
-	# def test_first_available_space_returned_one
- #        player = UnbeatableAI.new("X")
- #        assert_equal(1, player.get_move(["X", " ", " ", " ", " ", " ", " ", " ", " "]))
-	# end
-
-	# def test_first_available_space_returned_three
- #        player = UnbeatableAI.new("X")
- #        assert_equal(3, player.get_move(["X", "O", "X", " ", " ", "O", " ", "X", " "]))
-	# end
 end
