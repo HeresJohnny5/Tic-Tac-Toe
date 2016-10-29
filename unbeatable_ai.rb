@@ -43,6 +43,10 @@ class UnbeatableAI
 			move = check_for_center(ttt_board)
 		elsif opponent_corner(ttt_board) <= 8
 			move = opponent_corner(ttt_board)
+		elsif check_empty_corner(ttt_board) <= 8
+			move = check_empty_corner
+		elsif check_empty_side(ttt_board) <=8
+			move = check_empty_side
 		else
 			move = ttt_board.index(" ")
 		end
