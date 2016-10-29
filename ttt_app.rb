@@ -44,7 +44,7 @@ enable :sessions
 get '/' do
 	@title = "Welcome to Tic Tac Toe"
 	session[:board] = Board.new
-	erb :home, :locals => { :board => session[:board].board_positions }
+	erb :home, :layout => :home_static_layout, :locals => { :board => session[:board].board_positions }
 end
 
 post '/game' do
@@ -53,7 +53,7 @@ post '/game' do
 	session[:current_player] = session[:p1]
 	session[:current_player_name] = session[:name_player_1]
 
-	erb :opponent, :locals => { :board => session[:board].board_positions }	
+	erb :opponent, :layout => :home_static_layout, :locals => { :board => session[:board].board_positions }	
 end
 
 post '/opponent' do
@@ -62,7 +62,7 @@ post '/opponent' do
 	if player_2 == "human"
 		session[:p2] = Human.new("O")
 
-		erb :opponent_name, :locals => { :board => session[:board].board_positions }
+		erb :opponent_name, :layout => :home_static_layout, :locals => { :board => session[:board].board_positions }
 
 	elsif player_2 == "sequential_ai"
 		session[:p2] = SequentialAI.new("O")
@@ -103,7 +103,8 @@ get '/get_move' do
 end
 
 post '/get_player_move' do
-	move = params[:move_spot].to_i
+	move = params[:square].to_i
+	# move = params[:move_spot].to_i
 
 	if session[:board].valid_space?(move)
 		redirect '/make_move?move=' + move.to_s
