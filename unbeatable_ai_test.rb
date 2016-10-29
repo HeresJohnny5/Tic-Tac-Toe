@@ -50,19 +50,24 @@ class TestBlockOpponentFork < Minitest::Test
 		cpu = UnbeatableAI.new("O")
 		assert_equal(1, cpu.get_move(["X", " ", " ", " ", "O", " ", " ", " ", "X"]))
 	end
+
+	def test_block_opponents_fork_O_returns_3
+		cpu = UnbeatableAI.new("O")
+		assert_equal(3, cpu.get_move([" ", " ", "X", " ", "O", " ", "X", " ", " "]))
+	end
 end
 
-# class TestCenterMove < Minitest::Test
-# 	def test_O_takes_center_returns_four_example_1
-# 		cpu = UnbeatableAI.new("O")
-# 		assert_equal(4, cpu.get_move(["X", " ", " ", " ", " ", " ", " ", " ", " "]))	
-# 	end	
+class TestCenterMove < Minitest::Test
+	def test_O_takes_center_returns_four_example_1
+		cpu = UnbeatableAI.new("O")
+		assert_equal(4, cpu.get_move(["X", " ", " ", " ", " ", " ", " ", " ", " "]))	
+	end	
 
-# 	def test_O_takes_center_returns_four_example_2
-# 		cpu = UnbeatableAI.new("O")
-# 		assert_equal(4, cpu.get_move([" ", " ", " ", " ", " ", " ", " ", " ", "X"]))	
-# 	end
-# end
+	def test_O_takes_center_returns_four_example_2
+		cpu = UnbeatableAI.new("O")
+		assert_equal(4, cpu.get_move([" ", " ", " ", " ", " ", " ", " ", " ", "X"]))	
+	end
+end
 
 # class TestOpponentCorner < Minitest::Test
 # 	def test_0_opponent_corner_returns_8
