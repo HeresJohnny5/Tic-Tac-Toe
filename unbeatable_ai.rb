@@ -110,19 +110,19 @@ class UnbeatableAI
 			fork_spot.push(fork_positions[index])
 		end
 
-		fork_spot = fork_spot.flatten
+		fork_spot = fork_spot.flatten.sort
 
-		array = []
+		conditional_array = []
 		fork_spot.each do |spot|
 			if ttt_board[spot] == " "
-				array.push(spot)
+				conditional_array.push(spot)
 			end
 		end
 
-		if array.detect { |match| array.count(match) > 1 } == nil
+		if conditional_array.detect { |match| conditional_array.count(match) > 1 } == nil
 			move = 10
 		else
-			move = array.detect { |match| array.count(match) > 1 }
+			move = conditional_array.detect { |match| conditional_array.count(match) > 1 }
 		end
 		move
 	end
