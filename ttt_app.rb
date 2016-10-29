@@ -76,10 +76,10 @@ post '/opponent' do
 
 		redirect '/get_move'
 
-	# else player_2 == "unbeatable_ai"
-	# 	session[:p2] = UnbeatableAI.new("O")
+	else player_2 == "unbeatable_ai"
+		session[:p2] = UnbeatableAI.new("O")
 
-	# 	redirect '/get_move'
+		redirect '/get_move'
 	end
 end
 

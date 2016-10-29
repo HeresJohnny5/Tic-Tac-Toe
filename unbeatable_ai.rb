@@ -33,20 +33,28 @@ class UnbeatableAI
 
 		if check_for_win(ttt_board, cpu_marker) <= 8
 			move = check_for_win(ttt_board, cpu_marker)
+			move = move + 1
 		elsif check_for_block(ttt_board, player_marker) <= 8
 			move = check_for_block(ttt_board, player_marker)
+			move = move + 1
 		elsif check_for_fork(ttt_board) <= 8
 			move = check_for_fork(ttt_board)
+			move = move + 1
 		elsif block_opponents_fork(ttt_board, cpu_marker) <= 8
 			move = block_opponents_fork(ttt_board, cpu_marker)
+			move = move + 1
 		elsif check_for_center(ttt_board) <= 8
 			move = check_for_center(ttt_board)
+			move = move + 1
 		elsif opponent_corner(ttt_board) <= 8
 			move = opponent_corner(ttt_board)
+			move = move + 1
 		elsif check_empty_corner(ttt_board) <= 8
-			move = check_empty_corner
+			move = check_empty_corner(ttt_board)
+			move = move + 1
 		elsif check_empty_side(ttt_board) <=8
-			move = check_empty_side
+			move = check_empty_side(ttt_board)
+			move = move + 1
 		else
 			move = ttt_board.index(" ")
 		end
@@ -75,16 +83,16 @@ class UnbeatableAI
 
 		win_or_block_positions = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
 
-		pick = 10
+		move = 10
 		
 		winning_or_block_combinations.each_with_index do |win_or_block_line, index|
 			if win_or_block_line.count(current_marker) == 2 && win_or_block_line.count(" ") == 1
 				winner_or_block = win_or_block_line.index(" ")
 				i = index
-				pick = win_or_block_positions[i][winner_or_block]
+				move = win_or_block_positions[i][winner_or_block]
 			end
 		end
-		pick
+		move
 	end
 
 	def check_for_fork(ttt_board)
@@ -219,7 +227,7 @@ class UnbeatableAI
 		elsif ttt_board[8] == player_marker
 			move = 0
 		else
-			move
+			move = 10
 		end
 
 		move
