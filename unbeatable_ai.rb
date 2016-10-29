@@ -41,6 +41,8 @@ class UnbeatableAI
 			move = block_opponents_fork(ttt_board, cpu_marker)
 		elsif check_for_center(ttt_board) <= 8
 			move = check_for_center(ttt_board)
+		elsif opponent_corner(ttt_board) <= 8
+			move = opponent_corner(ttt_board)
 		else
 			move = ttt_board.index(" ")
 		end
@@ -164,16 +166,23 @@ class UnbeatableAI
 
 		block_fork_spot = block_fork_spot.flatten.sort
 
+		block_spot = []
+
 		if block_fork_spot.include?(4)
-			move = 4
+			move = 10
 		else
-			block_spot = []
 			block_fork_spot.each do |spot|
 				if ttt_board[spot] == "X" && ttt_board[spot + 1] == " "
 					block_spot.push(spot + 1)
+				else
+					move = 10
 				end
 			end
+		end
 
+		if block_spot == []
+			move = 10
+		else
 			move = block_spot.shift
 		end
 
@@ -181,8 +190,10 @@ class UnbeatableAI
 	end
 
 	def check_for_center(ttt_board)
-		if ttt_board[4] = " "
+		if ttt_board[4] == " "
 			move = 4
+		else
+			move = 10
 		end
 	end
 
@@ -206,6 +217,8 @@ class UnbeatableAI
 		else
 			move
 		end
+
+		move
 	end
 
 	def check_empty_corner(ttt_board)

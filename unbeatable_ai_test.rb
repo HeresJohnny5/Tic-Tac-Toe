@@ -69,11 +69,11 @@ class TestCenterMove < Minitest::Test
 	end
 end
 
-# class TestOpponentCorner < Minitest::Test
-# 	def test_0_opponent_corner_returns_8
-# 		cpu = UnbeatableAI.new("O")
-# 		assert_equal(8, cpu.opponent_corner(["X", " ", " ", " ", " ", " ", " ", " ", " "]))
-# 	end
+class TestOpponentCorner < Minitest::Test
+	def test_O_opponent_corner_returns_6
+		cpu = UnbeatableAI.new("O")
+		assert_equal(6, cpu.get_move([" ", " ", "X", "X", "O", " ", " ", " ", " "]))
+	end
 
 # 	def test_2_opponent_corner_returns_6
 # 		cpu = UnbeatableAI.new("O")
@@ -89,7 +89,7 @@ end
 # 		cpu = UnbeatableAI.new("O")
 # 		assert_equal(0, cpu.opponent_corner([" ", " ", " ", " ", " ", " ", " ", " ", "X"]))
 # 	end
-# end
+end
 
 # class TestEmptyCorner < Minitest::Test
 # 	def test_empty_corner_returns_0
