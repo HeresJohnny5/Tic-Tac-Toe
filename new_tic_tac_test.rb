@@ -23,7 +23,7 @@ class TestBoard <Minitest::Test
 	def test_for_valid_space
 		board = Board.new()
 		board.ttt_board = ["X", "O", " ", " ", " ", " ", "O", " ", "X"]
-		assert_equal(true, board.valid_space?(2))
+		assert_equal(true, board.valid_space?(3))
 	end
 
 	def test_for_valid_space_returns_false

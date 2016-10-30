@@ -7,9 +7,10 @@ class TestHuman < Minitest::Test
 		assert_equal("X", player.marker)
 	end
 
-	def test_get_move
-		player = Human.new("X")
-		move = player.get_move([" ", " ", " ", " ", " ", " ", " ", " ", " "])
-		assert_equal(true, [0, 1, 2, 3, 4, 5, 6, 7, 8].include?(move))	
-	end
+	# Test applies to commented code block on 'human.rb'
+	# def test_get_move
+	# 	player = Human.new("X")
+	# 	move = player.get_move([" ", " ", " ", " ", " ", " ", " ", " ", " "])
+	# 	assert_equal(true, [0, 1, 2, 3, 4, 5, 6, 7, 8].include?(move))	
+	# end
 end

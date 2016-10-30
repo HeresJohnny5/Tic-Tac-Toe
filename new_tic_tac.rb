@@ -23,7 +23,6 @@ class Board
 	end
 
 	def valid_space?(position)
-		# ttt_board[position] == " " && position >= 0 && position <= 8
 		position = (position - 1)
 		position >= 0 && position <= 8 && ttt_board[position] == " "
 	end
@@ -33,7 +32,6 @@ class Board
 	end
 
 	def game_won?(marker)
-		 
 		result = false
 		winning_combo = [[ttt_board[0],ttt_board[1],ttt_board[2]],
                          [ttt_board[3],ttt_board[4],ttt_board[5]],

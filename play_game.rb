@@ -1,7 +1,7 @@
 require_relative "console_game.rb"
 
-p1 = SequentialAI.new("X")
-p2 = SequentialAI.new("O")
+p1 = Human.new("X")
+p2 = Human.new("O")
 game = ConsoleGame.new(p1, p2)
 
 # array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
