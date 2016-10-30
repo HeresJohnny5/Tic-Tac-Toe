@@ -1,6 +1,8 @@
-<h1 id='header'><%= current_player.marker %> is the winner</h1>
-<h2 id='header-player'>Great job <%= current_player_name %></h2>
+<div results-container>
+	<h1 id='results-header'><%= current_player.marker %> is the winner. Great job <%= current_player_name %></h1>
+	<!-- <h2 id='header-player'>Great job <%= current_player_name %></h2> -->
 
-<p><a href='/'>Play Again</a></p>
+	<p><a href='/'>Play Again</a></p>
 
-<button><a href="/update_csv">Results</a></button>	
+	<button><a href="/update_csv">Results</a></button>
+</div>	

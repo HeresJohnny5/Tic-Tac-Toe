@@ -126,7 +126,7 @@ get '/make_move' do
 
 		# write_to_csv(player_1, player_2, winner, date_time)
 
-		# Added line 134
+		# Added write_file_to_s3_method
 		write_file_to_s3(player_1, player_2, winner, date_time)
 
 		erb :win, :locals => { :current_player => session[:current_player], :current_player_name => session[:current_player_name], :board => session[:board].board_positions }
@@ -137,6 +137,9 @@ get '/make_move' do
 		date_time = DateTime.now
 
 		# write_to_csv(player_1, player_2, winner, date_time)
+
+		# Added line 134
+		write_file_to_s3(player_1, player_2, winner, date_time)
 
 		erb :tie, :locals => { :board => session[:board].board_positions }
 	else
