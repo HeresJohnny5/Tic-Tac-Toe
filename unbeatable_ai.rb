@@ -232,32 +232,7 @@ class UnbeatableAI
 		move
 	end
 
-	# def opponent_corner(ttt_board)
-	# 	cpu_marker = marker
-		
-	# 	if cpu_marker == "O"
-	# 		player_marker = "X"
-	# 	else
-	# 		player_marker = "O"
-	# 	end
-
-	# 	if ttt_board[0] == player_marker && ttt_board[8] == " "
-	# 		move = 8
-	# 	elsif ttt_board[2] == player_marker && ttt_board[6] == " "
-	# 		move = 6
-	# 	elsif ttt_board[6] == player_marker && ttt_board[2] == " "
-	# 		move = 2
-	# 	elsif ttt_board[8] == player_marker && ttt_board[0] == " "
-	# 		move = 0
-	# 	else
-	# 		move = 10
-	# 	end
-	# end
-
 	def check_empty_corner(ttt_board)
-		# corners = [0, 2, 6, 8]
-		# corner_options = []
-
 		if ttt_board[0] == " "
 			move = 0
 		elsif ttt_board[2] == " "
@@ -269,33 +244,7 @@ class UnbeatableAI
 		else
 			move = 10
 		end
-				
-		# corners.each do |corner|
-		# 	if ttt_board[corner] == " "
-		# 		corner_options.push(corner)
-		# 	end
-		# end
-		# move = corner_options.shift
-
-		# if corner_options = []
-		# 	move = 10
-		# else
-		# 	move = corner_options.shift
-		# end
-
 	end
-
-	# def check_empty_corner(ttt_board)
-	# 	corners = [0, 2, 6, 8]
-	# 	corner_options = []
-
-	# 	corners.each do |corner|
-	# 		if ttt_board[corner] == " "
-	# 			corner_options.push(corner)
-	# 		end
-	# 	end
-	# 	first_corner_available = corner_options.shift
-	# end
 
 	def check_empty_side(ttt_board)
 		sides = [1, 3, 5, 7]
