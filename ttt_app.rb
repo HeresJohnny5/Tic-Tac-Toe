@@ -77,6 +77,7 @@ post '/opponent' do
 
 	else player_2 == "unbeatable_ai"
 		session[:p2] = UnbeatableAI.new("O")
+		session[:name_player_2] = "CPU"
 
 		redirect '/get_move'
 	end
