@@ -26,4 +26,4 @@ Results are accessible when the game has ended regardless of the result (win or 
 
 ## Run ttt_app.rb to run the app
 
-If you don't have *sinatra-reloader gem* please hash out **require 'sinatra/reloader' if development?** on app.rb
+If you don't have *sinatra-reloader gem* please hash out **require 'sinatra/reloader' if development?** on ttt_app.rb

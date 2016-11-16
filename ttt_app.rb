@@ -42,7 +42,7 @@ enable :sessions
 
 get '/' do
 	@title = "Welcome to Tic Tac Toe"
-	session[:board] = Board.new
+	session[:board] = Board.new([" ", " ", " ", " ", " ", " ", " ", " ", " "])
 	erb :home, :layout => :home_static_layout, :locals => { :board => session[:board].board_positions }
 end
 
